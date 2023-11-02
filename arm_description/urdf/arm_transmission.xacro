@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<!-- Define a macro to create a PositionJointInterface for a joint -->
+	
+    <xacro:macro name="arm_transmission">
+	
+	<xacro:arg name="hardware_interface" default="PositionJointInterface"/>
+	
+ 	 
+ 	 <transmission name="Tj0">
+  	  <type>transmission_interface/SimpleTransmission</type>
+  	  <joint name="j0">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+   	 </joint>
+   	 
+   	 <actuator name="motor_j0">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+  	   <mechanicalReduction>1.0</mechanicalReduction>
+  	 </actuator>
+  	</transmission>
+  	
+  	<transmission name="Tj1">
+  	  <type>transmission_interface/SimpleTransmission</type>
+  	  <joint name="j1">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+   	 </joint>
+   	 <actuator name="motor_j1">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+  	   <mechanicalReduction>1.0</mechanicalReduction>
+  	 </actuator>
+  	</transmission>
+  	
+  	<transmission name="Tj2">
+  	  <type>transmission_interface/SimpleTransmission</type>
+  	  <joint name="j2">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+   	 </joint>
+   	 <actuator name="motor_j2">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+  	   <mechanicalReduction>1.0</mechanicalReduction>
+  	 </actuator>
+  	</transmission>
+  	
+  	<transmission name="Tj3">
+  	  <type>transmission_interface/SimpleTransmission</type>
+  	  <joint name="j3">
+   	   <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+   	 </joint>
+   	 <hardwareInterface>hardware_interface/$(arg hardware_interface)</hardwareInterface>
+   	 <actuator name="motor_j3">
+  	   <mechanicalReduction>1.0</mechanicalReduction>
+  	 </actuator>
+  	</transmission>
+  	
+ </xacro:macro>
+</robot>
+  	

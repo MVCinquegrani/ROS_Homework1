@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Define arguments for hardware interface, controllers, robot name, and model -->
+    <arg name="hardware_interface" default="PositionJointInterface"/>
+    <arg name="controllers" default="joint_state_controller j0p_controller j1p_controller j2p_controller j3p_controller"/>
+    <arg name="robot_name" default="arm" />
+
+    <!-- Loads joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find arm_control)/config/arm_control.yaml" command="load" />
+
+    <!-- Loads the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen" ns="arm" args="$(arg controllers)" />
+
+    <!-- Converts joint states to TF transforms for rviz, etc -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+          respawn="false" output="screen">
+        <remap from="joint_states" to="/$(arg robot_name)/joint_states" />
+    </node>
+</launch>

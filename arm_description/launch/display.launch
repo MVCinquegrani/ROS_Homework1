@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- Load the robot description -->
+<param name="robot_description" command="$(find xacro)/xacro '$(find arm_description)/urdf/arm.urdf.xacro'"/>
+
+ <!--  <param name="robot_description" textfile="$(find arm_description)/urdf/arm.urdf"/> -->
+  
+  <!-- Start the robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <!-- Start the joint state publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  
+  <!-- Start Rviz with RobotModel plugin -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+
+</launch>
